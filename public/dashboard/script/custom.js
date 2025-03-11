@@ -129,8 +129,8 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            type: 'post',
-            url: '/admin/check-admin-password',
+            type: 'get',
+            url: '/dashboard/check-password',
             data: {current_password: current_password},
             success: function (resp) {
                 //alert(resp);
