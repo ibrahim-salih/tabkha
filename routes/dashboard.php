@@ -4,6 +4,11 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\CountryController;
+use App\Http\Controllers\Dashboard\StateController;
+use App\Http\Controllers\Dashboard\NationalityController;
+use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\ResetPasswordController;
 
@@ -44,6 +49,85 @@ Route::group(
             Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
             Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
             Route::post('/update-password', [ProfileController::class, 'updatePassword']);
+            ########################### nationalities ##############################################
+            Route::group(['prefix' => 'nationalities', 'as' => 'nationalities.'], function () {
+                Route::controller(NationalityController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{nationality}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/status', 'nationalityStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                });
+            });
+            ########################### countries ##############################################
+            Route::group(['prefix' => 'countries', 'as' => 'countries.'], function () {
+                Route::controller(CountryController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{country}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/update-country-status', 'updateCountryStatus')->name('updateCountryStatus');
+                    Route::post('/status', 'countryStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                });
+            });
+            ########################### cities ##############################################
+            Route::group(['prefix' => 'staties', 'as' => 'staties.'], function () {
+                Route::controller(StateController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{state}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/update-state-status', 'updateStateStatus')->name('updateStateStatus');
+                    Route::post('/status', 'stateStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                });
+            });
+            ########################### Sections ##############################################
+            Route::group(['prefix' => 'sections', 'as' => 'sections.'], function () {
+                Route::controller(SectionController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{section}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/status', 'sectionStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                    // Route::get('/restore-all', 'restoreAll'])->name('restore');
+                });
+            });
+            ########################### categories ##############################################
+            Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+                Route::controller(CategoryController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{category}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/status', 'categoryStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                    // Route::get('/restore-all', 'restoreAll'])->name('restore');
+                });
+            });
         });
         ########################### End Protected Routes #####################################
     }

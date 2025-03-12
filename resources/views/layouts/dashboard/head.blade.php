@@ -5,7 +5,7 @@
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="MINYSOFT">
   <meta name="csrf_token" id="csrf_token" content="{{ csrf_token() }}" />
-  <title>dashboard.dashboard | @yield('title')</title>
+  <title>لوحة التحكم | @yield('title')</title>
   <link rel="apple-touch-icon" href="{{asset('dashboard')}}/app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboard')}}/app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
@@ -25,8 +25,11 @@
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/dashboard-ecommerce.css">
   
-  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/bootstrap-switch.min.css">
-  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/switchery.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/selects/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/icheck/icheck.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/icheck/custom.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/forms/checkboxes-radios.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/forms/switch.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/fonts/simple-line-icons/style.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/weather-icons/climacons.min.css">
@@ -34,6 +37,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/morris.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/chartist.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/chartist-plugin-tooltip.css">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
   <!-- END VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/fonts/simple-line-icons/style.css">
   <!-- BEGIN Custom CSS-->

@@ -1,126 +1,4 @@
 $(document).ready(function () {
-    $(document).on("click", "#switch8", function () {
-        $(this).toggle($("input:checkbox", $(this))[0].checked);
-        alert ('ok');
-        // var checkbox = document.getElementById('checkboxID');
-        // if($(this).prop("checked") == true){
-        //     // $("#txtAge").show();
-        //     alert ('ok');
-        //   } else if($(this).prop("checked") == false){
-        //     // $("#txtAge").hide();
-        //     alert ('nn');
-        //   }
-    });
-    // level
-    // $(".nav-item").removeClass("active");
-    // $(".nav-link").removeClass("active");
-     //updateCountryStatus
-    //  $(document).on("click", "#switchBootstrap18", function () {
-    // 	if(this.checked){
-    //         alert ('checked');
-    // 		// $("#info").text("U checked me, place some code here");
-    // 	}
-    //     else{
-    //         alert ('unchecked');
-    //     	// $("#info").text("U unchecked me, another piece of code here");
-    //     }
-    // });
-    $('#switchBootstrap18').on('click', function() {
-        var checkStatus = this.checked ? 'ON' : 'OFF';
-        alert ('ok');
-        // $.post("quickRightSidebarDBUpdate.php", {"quickVar1a": checkStatus}, 
-        // function(data) {
-        //     $('#resultQuickVar1').html(data);
-        // });
-    });
-    $(document).on("click", ".updateCountryStatus", function () {
-        //  alert ('ok'); die;
-        var status = $(this).children("i").attr("status");
-        var country_id = $(this).attr("country_id");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-            },
-            type: 'POST',
-            url: '/dashboard/countries/update-country-status',
-            data: {status: status, country_id: country_id},
-            success: function (resp) {
-                //alert(resp);
-                if (resp['status'] == 0) {
-                    $("#country-" + country_id).html("<i class='ft-square' status='Inactive'></i>");
-                    toastr.error('country is','Inactive');
-                } else if (resp['status'] == 1) {
-                    $("#country-" + country_id).html("<i class='ft-check-square' status='Active'></i>");
-                    toastr.success('country is','Active');
-                }
-                
-                // Swal.fire({
-                //     position: 'top-center',
-                //     icon: 'success',
-                //     title: ''+resp.message+'',
-                //     showConfirmButton: false,
-                //     timer: 1500
-                // })
-                
-            }, error: function () {
-                // alert('Error');
-            }
-        })
-    });
-    $(document).on("click", ".updateStateStatus", function () {
-        //alert ('ok');
-        var status = $(this).children("i").attr("status");
-        var state_id = $(this).attr("state_id");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: '/admin/states/update-state-status',
-            data: {status: status, state_id: state_id},
-            success: function (resp) {
-                //alert(resp);
-                if (resp['status'] == 0) {
-                    $("#state-" + state_id).html("<i class='ft-square' status='Inactive'></i>");
-                    // $("#category-" + category_id).html("<input checked=''/>");
-                    // $("#category-" + category_id).html("<input class='switchBootstrap' id='switchBootstrap18' data-on-color='danger' data-off-color='danger' />");
-                } else if (resp['status'] == 1) {
-                    $("#state-" + state_id).html("<i class='ft-check-square' status='Active'></i>");
-                    // $("#category-" + category_id).html("<input checked='checked'/>");
-                    // $("#category-" + category_id).html("<input class='switchBootstrap' id='switchBootstrap18' data-on-color='success' data-off-color='danger' checked />");
-                }
-            }, error: function () {
-                alert('Error');
-            }
-        })
-    });
-    $(document).on("click", ".updateCityStatus", function () {
-        //alert ('ok');
-        var status = $(this).children("i").attr("status");
-        var city_id = $(this).attr("city_id");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: '/admin/cities/update-city-status',
-            data: {status: status, city_id: city_id},
-            success: function (resp) {
-                //alert(resp);
-                if (resp['status'] == 0) {
-                    $("#city-" + city_id).html("<i class='ft-square' status='Inactive'></i>");
-                    // $("#category-" + category_id).html("<input checked=''/>");
-                    // $("#category-" + category_id).html("<input class='switchBootstrap' id='switchBootstrap18' data-on-color='danger' data-off-color='danger' />");
-                } else if (resp['status'] == 1) {
-                    $("#city-" + city_id).html("<i class='ft-check-square' status='Active'></i>");
-                    // $("#category-" + category_id).html("<input checked='checked'/>");
-                    // $("#category-" + category_id).html("<input class='switchBootstrap' id='switchBootstrap18' data-on-color='success' data-off-color='danger' checked />");
-                }
-            }, error: function () {
-                alert('Error');
-            }
-        })
-    });
     //check admin password is correct or not
     $("#current_password").keyup(function () {
         var current_password = $("#current_password").val();
@@ -145,6 +23,219 @@ $(document).ready(function () {
             }
         });
     })
+    //confirm delete
+    $(document).on("click", ".confirmDelete", function () {
+        var sec = $(this).attr("sec");
+        var module = $(this).attr("module");
+        var moduleid = $(this).attr("moduleid");
+        // alert(module);
+        Swal.fire({
+            title: 'هل أنت واثق؟',
+            text: "لن تتمكن من التراجع عن هذا!",
+            icon: 'تحذير',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'الغاء',
+            confirmButtonText: 'نعم ، احذف!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Swal.fire(
+                //     'تم الحذف!',
+                //     'تم حذف ملفك.',
+                //     'النجاح'
+                // )
+                window.location = "/dashboard/" + sec +"/" + module + "/" + moduleid;
+                // window.location = "/admin/" + sec +"/delete/" + moduleid;
+            }
+        })
+    })
+    //confirm delete trashed
+    $(document).on("click", ".confirmDeleteTr", function () {
+        var sec = $(this).attr("sec");
+        var module = $(this).attr("module");
+        var moduleid = $(this).attr("moduleid");
+        // return 123;die;
+        Swal.fire({
+            title: 'هل أنت واثق؟',
+            text: "سوف يوضع فى المهملات!",
+            icon: 'تحذير',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'الغاء',
+            confirmButtonText: 'نعم ، احذف!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Swal.fire(
+                //     'تم الحذف!',
+                //     'تم حذف ملفك.',
+                //     'النجاح'
+                // )
+                //// window.location = "/admin/" + sec +"/delete-" + module + "/" + moduleid;
+                window.location = "/dashboard/" + sec +"/" + module + "/" + moduleid;
+            }
+        })
+    })
+    // section status
+    $('input[name="toogle"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/dashboard/sections/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // Category status
+    $('input[name="toogleCategory"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/dashboard/categories/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // Nationality status
+    $('input[name="toogleNationality"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/dashboard/nationalities/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // Country status
+    $('input[name="toogleCountry"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/dashboard/countries/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // State status
+    $('input[name="toogleState"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/dashboard/staties/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+
+
+
+
     //end check admin password is correct or not
     //update admin status
     $(document).on("click", ".UpdateAdminStatus", function () {

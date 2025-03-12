@@ -126,10 +126,8 @@ class ProfileController extends Controller
                 // $image_tmp->move($filePath, $fileName);
                 // $path = 'uploads/admins/' . $fileName;
             }
-        } else if (!empty($admin['current_admin_image'])) {
-            $path = $admin['current_admin_image'];
-        } else {
-            $path = "";
+        }else {
+            $path = $admin->image;
         }
         try {
             $admin->name = $request->admin_name;
