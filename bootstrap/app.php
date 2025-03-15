@@ -20,8 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
             ->prefix('dashboard')
             // ->name('dashboard')
             ->group(base_path('routes/dashboard.php'));
-            // Route::middleware('web')
-            // ->group(base_path('routes/cooker.php'));
+            Route::middleware('web')
+            ->prefix('cooker')
+            ->group(base_path('routes/cooker.php'));
         
         }
     )
@@ -33,18 +34,26 @@ return Application::configure(basePath: dirname(__DIR__))
                 return route('login');
             }
         });
-        // $middleware->redirectGuestsTo(function(){
-        //     if(request()->is('*/cooker/*')){
-        //         return route('cooker.login');
-        //     }else{
-        //         return route('cooker.login');
-        //     }
-        // });
+        
         $middleware->redirectUsersTo(function(){
             if(Auth::guard('admin')->check()){
                 return route('dashboard.welcome');
             }else{
                 return route('dashboard.login');
+            }
+        });
+        $middleware->redirectGuestsTo(function(){
+            if(request()->is('*/cooker/*')){
+                return route('cooker.login');
+            }else{
+                return route('cooker.login');
+            }
+        });
+        $middleware->redirectUsersTo(function(){
+            if(Auth::guard('cooker')->check()){
+                return route('cooker.welcome');
+            }else{
+                return route('cooker.login');
             }
         });
         $middleware->alias([

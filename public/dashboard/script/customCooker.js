@@ -1,38 +1,123 @@
 $(document).ready(function () {
-    $(document).on("click", "#switch8", function () {
-        $(this).toggle($("input:checkbox", $(this))[0].checked);
-        alert ('ok');
-        // var checkbox = document.getElementById('checkboxID');
-        // if($(this).prop("checked") == true){
-        //     // $("#txtAge").show();
-        //     alert ('ok');
-        //   } else if($(this).prop("checked") == false){
-        //     // $("#txtAge").hide();
-        //     alert ('nn');
-        //   }
+    $("#country").on("change", function () {
+        var countryId = this.value;
+        $("#state").html("");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr("content"),
+            },
+            // url: '{{ route("dashboard.lowyers.getStates") }}?country=' + countryId,
+            url: "/cooker/getStates",
+            data: {
+                country: countryId,
+            },
+            type: "get",
+            success: function (res) {
+                // return res;
+                $("#state").html('<option value=""> المدينة</option>');
+                $.each(res, function (key, value) {
+                    $("#state").append(
+                        '<option value="' +
+                            value.id +
+                            '">' +
+                            value.name +
+                            "</option>"
+                    );
+                });
+            },
+        });
     });
-    // level
-    // $(".nav-item").removeClass("active");
-    // $(".nav-link").removeClass("active");
-     //updateCountryStatus
-    //  $(document).on("click", "#switchBootstrap18", function () {
-    // 	if(this.checked){
-    //         alert ('checked');
-    // 		// $("#info").text("U checked me, place some code here");
-    // 	}
-    //     else{
-    //         alert ('unchecked');
-    //     	// $("#info").text("U unchecked me, another piece of code here");
-    //     }
-    // });
-    $('#switchBootstrap18').on('click', function() {
-        var checkStatus = this.checked ? 'ON' : 'OFF';
-        alert ('ok');
-        // $.post("quickRightSidebarDBUpdate.php", {"quickVar1a": checkStatus}, 
-        // function(data) {
-        //     $('#resultQuickVar1').html(data);
-        // });
+    // get categories
+    $("#Xsection").on("change", function () {
+        var categoryId = this.value;
+        $("#Xcategory").html("");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr("content"),
+            },
+            // url: '{{ route("dashboard.lowyers.getStates") }}?country=' + countryId,
+            url: "/cooker/menus/getCats",
+            data: {
+                category: categoryId,
+            },
+            type: "get",
+            success: function (res) {
+                // return res;
+                $("#Xcategory").html('<option value=""> الفئة</option>');
+                $.each(res, function (key, value) {
+                    $("#Xcategory").append(
+                        '<option value="' +
+                            value.id +
+                            '">' +
+                            value.name +
+                            "</option>"
+                    );
+                });
+            },
+        });
     });
+    // get foods
+    $("#Xcategory").on("change", function () {
+        var foodId = this.value;
+        $("#food").html("");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr("content"),
+            },
+            // url: '{{ route("dashboard.lowyers.getStates") }}?country=' + countryId,
+            url: "/cooker/menus/getFoods",
+            data: {
+                food: foodId,
+            },
+            type: "get",
+            success: function (res) {
+                // return res;
+                $("#food").html('<option value=""> الطبخة</option>');
+                $.each(res, function (key, value) {
+                    $("#food").append(
+                        '<option value="' +
+                            value.id +
+                            '">' +
+                            value.name +
+                            "</option>"
+                    );
+                });
+            },
+        });
+    });
+    // Menu status
+    $('input[name="toogleMenu"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/cooker/menus/status',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+
+
     $(document).on("click", ".updateCountryStatus", function () {
         //  alert ('ok'); die;
         var status = $(this).children("i").attr("status");
@@ -71,7 +156,7 @@ $(document).ready(function () {
     //check admin password is correct or not
     $("#current_password").keyup(function () {
         var current_password = $("#current_password").val();
-        // alert(current_password);
+        //alert(current_password);
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

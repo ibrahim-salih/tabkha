@@ -16,4 +16,9 @@ class Nationality extends Model
     protected $table = 'nationalities';
     
     protected $fillable = ['name','status','deleted_at','created_at','updated_at'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', '1');
+    }
 }

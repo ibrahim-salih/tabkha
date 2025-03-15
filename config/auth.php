@@ -42,16 +42,16 @@ return [
         ],
         'api' => [
             'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'cookers',
         ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        // 'cooker' => [
-        //     'driver' => 'session',
-        //     'provider' => 'cookers',
-        // ],
+        'cooker' => [
+            'driver' => 'session',
+            'provider' => 'cookers',
+        ],
     ],
 
     /*
@@ -80,10 +80,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Admin::class),
         ],
-        // 'cookers' => [
-        //     'driver' => 'eloquent',
-        //     'model' => env('AUTH_MODEL', App\Models\Cooker::class),
-        // ],
+        'cookers' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Cooker::class),
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

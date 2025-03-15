@@ -112,9 +112,6 @@ class SectionController extends Controller
         return view('dashboard.sections.edit')->with(compact('section'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateSectionRequest $request, Section $section)
     {
         $section = Section::findOrFail($request->id);

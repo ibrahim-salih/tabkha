@@ -16,8 +16,11 @@ class CategorySeeder extends Seeder
         $records = [
             ['id'=>1,'section_id'=>1,'name'=>'المشويات','slug'=>'المشويات','status'=>'1'],
             ['id'=>2,'section_id'=>1,'name'=>'المحاشى','slug'=>'المحاشى','status'=>'1'],
-            ['id'=>3,'section_id'=>1,'name'=>'الخضروات','slug'=>'الخضروات','status'=>'1'],
+            ['id'=>3,'section_id'=>1,'name'=>'خضروات مطبوخة','slug'=>'خضروات-مطبوخة','status'=>'1'],
             ['id'=>4,'section_id'=>1,'name'=>'الطواجن','slug'=>'الطواجن','status'=>'1'],
+            ['id'=>5,'section_id'=>1,'name'=>'حلويات','slug'=>'حلويات','status'=>'1'],
+            ['id'=>6,'section_id'=>1,'name'=>'الارز','slug'=>'الارز','status'=>'1'],
+            ['id'=>7,'section_id'=>1,'name'=>'المكرونة','slug'=>'المكرونة','status'=>'1'],
         ];
         Category::insert($records);
     }
