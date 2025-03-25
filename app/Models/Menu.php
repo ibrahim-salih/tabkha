@@ -14,7 +14,7 @@ class Menu extends Model
     // use HasTranslations;
     protected $table = 'menus';
 
-    protected $fillable = ['section_id','category_id','food_id','cooker_id','Qtype_id','image','description','video','price','status','view','meta_description','meta_keywords','deleted_at','created_at','updated_at'];
+    protected $fillable = ['section_id','category_id','food_id','cooker_id','Qtype_id','country_id','state_id','image','description','video','price','minQty','bforeOrder','timeEnd','status','view','meta_description','meta_keywords','deleted_at','created_at','updated_at'];
 
     public function section(){
         return $this->belongsTo('App\Models\Section','section_id');
@@ -32,5 +32,12 @@ class Menu extends Model
     }
     public function qtype(){
         return $this->belongsTo('App\Models\QuantityType','Qtype_id');
+    }
+    public function country(){
+        return $this->belongsTo('App\Models\Country','country_id');
+    }
+
+    public function state(){
+        return $this->belongsTo('App\Models\State','state_id');
     }
 }

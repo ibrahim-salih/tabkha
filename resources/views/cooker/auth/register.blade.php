@@ -56,7 +56,7 @@
                                                     </div>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-12 col-sm-12 col-md-5">
+                                            <div class="col-3 col-sm-12 col-md-3">
                                                 <fieldset class="form-group position-relative has-icon-left">
                                                     <input type="text" name="lastName" id="lastName" class="form-control input-lg"
                                                         placeholder="اللقب" tabindex="2">
@@ -68,6 +68,22 @@
                                                     <div class="form-control-position">
                                                         <i class="ft-user"></i>
                                                     </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-2 col-sm-12 col-md-2">
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <!-- <label for="country">المحافظة :</label> -->
+                                                    <select class="select2 c-select form-control" id="package" name="package">
+                                                        <option value="">اختر الباقة</option>
+                                                        @foreach($packages as $package)
+                                                        <option value="{{ $package->id }}">{{ $package->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error("package")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
                                                 </fieldset>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-2">
@@ -281,7 +297,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-8 col-sm-9 col-md-9">
-                                                <p class="font-small-3">عند الضغط على تسجيل انت توافق على <a href="{{ route('cooker.terms') }}" data-toggle="modal"
+                                                <p class="font-small-3">عند الضغط على تسجيل انت توافق على <a href="#" data-toggle="modal"
                                                         data-target="#terms">اتفاقية الاستخدام</a>
                                                     الخاصة بالموقع</p>
                                             </div>

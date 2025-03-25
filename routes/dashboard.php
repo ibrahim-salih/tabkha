@@ -11,6 +11,10 @@ use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\ResetPasswordController;
+use App\Http\Controllers\Dashboard\ChargeController;
+use App\Http\Controllers\Dashboard\CookerController;
+use App\Http\Controllers\Dashboard\PackageController;
+use App\Http\Controllers\Dashboard\WebPrivacyController;
 
 Route::group(
     [
@@ -126,6 +130,62 @@ Route::group(
                     Route::get('/trashed', 'trashed')->name('trashed');
                     Route::get('/restore/{id}', 'restore')->name('restore');
                     // Route::get('/restore-all', 'restoreAll'])->name('restore');
+                });
+            });
+            ########################### cookers ##############################################
+            Route::group(['prefix' => 'cookers', 'as' => 'cookers.'], function () {
+                Route::controller(CookerController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/activated', 'activated')->name('activated');
+                    Route::get('/not-activated', 'not_activated')->name('not-activated');
+                    Route::get('/show/{cooker}', 'show')->name('show');
+                    Route::get('/showCook/{cooker}', 'showCook')->name('showCook');
+
+                    Route::get('/edit/{cooker}', 'edit')->name('edit');
+                    Route::post('/update', 'update')->name('update');
+
+                    Route::post('/update/confirm/{cooker}','updateConfirm')->name('updateConfirm');
+                    Route::get('/notification/markAsRead', 'markAsRead')->name('markAsRead');
+                    Route::get('delete/{id}', 'delete');
+                });
+            });
+            ########################### Packages ##############################################
+            Route::group(['prefix' => 'packages', 'as' => 'packages.'], function () {
+                Route::controller(PackageController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{package}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::post('/status', 'packageStatus')->name('status');
+                    Route::get('softDelete/{id}', 'softDelete');
+                    Route::get('delete/{id}', 'destroy');
+                    Route::get('/trashed', 'trashed')->name('trashed');
+                    Route::get('/restore/{id}', 'restore')->name('restore');
+                    // Route::get('/restore-all', 'restoreAll'])->name('restore');
+                });
+            });
+            ########################### charges ##############################################
+            Route::group(['prefix' => 'charges', 'as' => 'charges.'], function () {
+                Route::controller(ChargeController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+
+                    Route::get('/edit/{cooker}', 'edit')->name('edit');
+                    Route::post('/update', 'update')->name('update');
+
+                    // Route::get('/notification/markAsRead', 'markAsRead')->name('markAsRead');
+                    Route::get('delete/{id}', 'delete');
+                });
+            });
+            ########################### privacys ##############################################
+            Route::group(['prefix' => 'privacys', 'as' => 'privacys.'], function () {
+                Route::controller(WebPrivacyController::class)->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::get('/{privacy}/edit', 'edit')->name('edit');
+                    Route::post('/store', 'store')->name('store');
+                    Route::post('/update', 'update')->name('update');
+                    Route::get('delete/{id}', 'destroy');
                 });
             });
         });

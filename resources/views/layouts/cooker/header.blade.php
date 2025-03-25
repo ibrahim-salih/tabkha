@@ -157,7 +157,7 @@
           <li class="dropdown dropdown-user nav-item">
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <span class="mr-1">اهلا بك يا ,
-                <span class="user-name text-bold-700">{{ Auth::guard('cooker')->user()->username }}</span>
+                <span class="user-name text-bold-700">{{ Auth::guard('cooker')->user()->f_name }}</span>
               </span>
               <span class="avatar avatar-online">
                 @if(!empty(Auth::guard('cooker')->user()->image))
@@ -171,8 +171,8 @@
                 @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="{{ route('cooker.cooker-details') }}"><i class="ft-user"></i>  الملف الشخصي</a>
-              <a class="dropdown-item" href="{{ route('cooker.cooker-password') }}"><i class="ft-check-square"></i> كلمة المرور</a>
+              <a class="dropdown-item" href="{{ route('cooker.profile') }}"><i class="ft-user"></i>  الملف الشخصي</a>
+              <a class="dropdown-item" href="{{ route('cooker.password') }}"><i class="ft-check-square"></i> كلمة المرور</a>
               <!-- <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a> -->
 
               <div class="dropdown-divider"></div>

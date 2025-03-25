@@ -772,6 +772,9 @@ $(document).ready(function () {
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
+
+
+
     //show filters on selection of category
     $("#category_id").on('change', function () {
         var category_id = $(this).val();
@@ -804,6 +807,101 @@ $(document).ready(function () {
                 alert('Error');
             }
         });
+    });
+
+
+    // Work status
+    $('input[name="toogleWork"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/cooker/work',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // Pre status
+    $('input[name="tooglePre"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/cooker/prePay',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
+    });
+    // COD status
+    $('input[name="toogleCod"]').change(function (){
+        var mode=$(this).prop('checked');
+        var id=$(this).val();
+        // alert(mode);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/cooker/codPay',
+            data:{
+                mode:mode,
+                id:id,
+            },
+            success:function(response){
+                if(response.status){
+                    // alert(response.msg);
+                    toastr.success(response.msg,'الحالة');
+                    if (response['active'] == 0) {
+                        // $("#section-" + section_id).html("<i class='ft-square' status='Inactive'></i>");
+                    } else if (response['active'] == 1) {
+                        // $("#section-" + section_id).html("<i class='ft-check-square' status='Active'></i>");
+                    }
+                }else{
+                    // alert('Please try agin.');
+                    toastr.error('Please try agin.','Error');
+                }
+            }
+        })
     });
     //////////ENDS///////////////////
 });

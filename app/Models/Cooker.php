@@ -12,10 +12,14 @@ class Cooker extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['f_name','l_name','username','email','phone','image','ID_img_front','ID_img_back','gender','confirm','password','nationalty_id','country_id','state_id','address','last_seen','online','status'];
+    protected $fillable = ['f_name','l_name','username','email','phone','phoneCash','image','ID_img_front','ID_img_back','package_id','start_date','end_date','freePackage','gender','confirm','work','prePay','COD','password','nationalty_id','country_id','state_id','address','last_seen','online','status'];
 
     public function nationalty(){
         return $this->belongsTo('App\Models\Nationality','nationalty_id');
+    }
+
+    public function package(){
+        return $this->belongsTo('App\Models\Package','package_id');
     }
     ####### Begin Scopes ####################################
     public function scopeActive($query)
@@ -40,12 +44,12 @@ class Cooker extends Authenticatable
     }
     ####### End Scopes ####################################
     ####### Begin Accessors & Mutators ####################################
-    public function getConfirmAttribute($val){
-       return $val == 'unConfirm' ? "غير مفعل" : " مفعل";
-    }
-    public function getOnlineAttribute($val){
-        return $val == 'avilable' ? ' متاح' : 'غير متاح';
-    }
+    // public function getConfirmAttribute($val){
+    //    return $val == '0' ? "غير مفعل" : " مفعل";
+    // }
+    // public function getOnlineAttribute($val){
+    //     return $val == 'avilable' ? ' متاح' : 'غير متاح';
+    // }
     ####### End Accessors & Mutators ####################################
 
     protected $hidden = [

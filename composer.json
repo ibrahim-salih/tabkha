@@ -9,12 +9,14 @@
         "php": "^8.2",
         "intervention/image": "^3.11",
         "intervention/image-laravel": "^1.5",
+        "khaled.alshamaa/ar-php": "^7.0",
         "laravel/framework": "^11.31",
         "laravel/socialite": "^5.18",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6",
         "mcamara/laravel-localization": "^2.3",
         "spatie/laravel-translatable": "^6.11",
+        "stevebauman/location": "^7.5",
         "yoeunes/toastr": "^3.1"
     },
     "require-dev": {

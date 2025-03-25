@@ -99,55 +99,9 @@
                                                     @enderror
                                                 </fieldset>
                                             </div>
-                                            <div class="col-xl-3 col-lg-6 col-md-12">
-                                                <fieldset class="form-group">
-                                                    <label class="card-title success" for="inputSuccess">  نوع الكمية<code>*</code></label>
-                                                    <select name="type" id="type" class="select2 form-control border-success info">
-                                                        <option value="">اختر النوع</option>
-                                                        @foreach($Qtypes as $type)
-                                                        <option value="{{ $type->id }}" @if($menu->Qtype_id==$type->id) selected @endif>{{ $type->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error("type")
-                                                    <p class="badge-default badge-danger block-tag text-center">
-                                                        <small class="block-area white">{{$message}}</small>
-                                                    </p>
-                                                    @enderror
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12">
-                                                <fieldset class="form-group">
-                                                    <label class="card-title success" for="inputSuccess">وصف الصنف<code>*</code></label>
-                                                    <input type="text" class="form-control border-success info" name="description"
-                                                        id="description"
-                                                        @if(empty($menu->description)) value="{{ old('description') }}"
-                                                    @else
-                                                    value="{{ $menu->description }}"
-                                                    @endif>
-                                                    @error("description")
-                                                    <p class="badge-default badge-danger block-tag text-center">
-                                                        <small class="block-area white">{{$message}}</small>
-                                                    </p>
-                                                    @enderror
-                                                </fieldset>
-                                            </div>
-                    
-                                            <div class="col-xl-3 col-lg-3 col-md-12">
-                                                <fieldset class="form-group">
-                                                    <label class="card-title success" for="inputSuccess">السعر<code>*</code></label>
-                                                    <input type="text" class="form-control border-success info" name="price"
-                                                        id="price"
-                                                        @if(empty($menu->price)) value="{{ old('price') }}"
-                                                    @else
-                                                    value="{{ $menu->price }}"
-                                                    @endif>
-                                                    @error("price")
-                                                    <p class="badge-default badge-danger block-tag text-center">
-                                                        <small class="block-area white">{{$message}}</small>
-                                                    </p>
-                                                    @enderror
-                                                </fieldset>
-                                            </div>
+                                            
+                                            
+                                            
                                             <div class="col-xl-3 col-lg-3 col-md-12">
                                                 <fieldset class="form-group">
                                                     <label class="card-title success" for="inputSuccess">حالة الصنف<code>*</code></label>
@@ -164,6 +118,151 @@
                                                     @enderror
                                                 </fieldset>
                                             </div>
+
+                                            <div class="col-xl-3 col-lg-6 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">  نوع الكمية<code>*</code></label>
+                                                    <select name="type" id="type" class="select2 form-control border-success info">
+                                                        <option value="">اختر النوع</option>
+                                                        @foreach($Qtypes as $type)
+                                                        <option value="{{ $type->id }}" @if($menu->Qtype_id==$type->id) selected @endif>{{ $type->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error("type")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">اقل كمية للطلب<code>*</code></label>
+                                                    <div class="input-group">
+                                                            <input type="text" name="minQty"
+                                                                class="touchspin bg-success" data-bts-min="1"
+                                                                data-bts-max="100000" @if(empty($menu->minQty)) value="{{ old('minQty') }}"
+                                                    @else
+                                                    value="{{ $menu->minQty }}"
+                                                    @endif >
+                                                        </div>
+                                                    @error("minQty")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">سعر الوحدة<code>*</code></label>
+                                                    <div class="input-group">
+                                                            <input type="text" name="price"
+                                                                class="touchspin bg-success" value="50.00" data-bts-step="0.50" data-bts-min="1"
+                                                                data-bts-max="100000" @if(empty($menu->price)) value="{{ old('price') }}"
+                                                    @else
+                                                    value="{{ $menu->price }}"
+                                                    @endif >
+                                                        </div>
+                                                    @error("price")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-6 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">صورة الصنف <code>*</code></label>
+                                                    <fieldset>
+                                                        <div class="input-group">
+                                                            <div class="controls">
+                                                                <input type="file" name="image"
+                                                                    id="image"
+                                                                    class="form-control">
+                                                            </div>
+                                                            @error("image")
+                                                            <p class="badge badge-default badge-danger block-tag">
+                                                                <small class="block-area white">{{$message}}</small>
+                                                            </p>
+                                                            @enderror
+
+                                                        </div>
+                                                    </fieldset>
+                                                    @error("image")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                    &nbsp;
+                                                    @if(!empty($menu->image))
+                                                    @if(File::exists(public_path($menu->image)))
+                                                    <img style="width: 250px;height: 150px;"
+                                                        src="{{ asset($menu->image) }}">
+                                                    @else
+                                                    <img style="width: 50px;height: 50px;"
+                                                        src="{{ asset('uploads/menus/small/no-image.png') }}">
+                                                    @endif
+                                                    @endif
+                                                    &nbsp;
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">يطلب قبل التنفيذ بعدد ساعات<code>*</code></label>
+                                                    <div class="input-group">
+                                                            <input type="text" name="bforeOrder"
+                                                                class="touchspin bg-success" data-bts-min="1"
+                                                                data-bts-max="100000" @if(empty($menu->bforeOrder)) value="{{ old('bforeOrder') }}"
+                                                    @else
+                                                    value="{{ $menu->bforeOrder }}"
+                                                    @endif >
+                                                        </div>
+                                                    @error("bforeOrder")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">وقت التنفيذ بالساعة<code>*</code></label>
+                                                    <div class="input-group">
+                                                            <input type="text" name="timeEnd"
+                                                                class="touchspin bg-success" data-bts-min="1"
+                                                                data-bts-max="100000" @if(empty($menu->timeEnd)) value="{{ old('timeEnd') }}"
+                                                    @else
+                                                    value="{{ $menu->timeEnd }}"
+                                                    @endif >
+                                                        </div>
+                                                    @error("timeEnd")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <fieldset class="form-group">
+                                                    <label class="card-title success" for="inputSuccess">وصف الصنف<code>*</code></label>
+                                                    <input type="text" class="form-control border-success info" name="description"
+                                                        id="description"
+                                                        placeholder="وصف الصنف" @if(empty($menu->description)) value="{{ old('description') }}"
+                                                    @else
+                                                    value="{{ $menu->description }}"
+                                                    @endif >
+                                                    @error("description")
+                                                    <p class="badge-default badge-danger block-tag text-center">
+                                                        <small class="block-area white">{{$message}}</small>
+                                                    </p>
+                                                    @enderror
+                                                </fieldset>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

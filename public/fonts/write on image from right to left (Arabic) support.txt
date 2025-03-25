@@ -1,0 +1,26 @@
+
+https://github.com/Intervention/image/issues/630
+
+composer require khaled.alshamaa/ar-php
+
+controller head
+use ArPHP\I18N\Arabic;
+
+
+
+// add cooker name on image
+                $size = getimagesize($request->file('image'));
+                $width = $size[0] / 2;
+                $height = $size[1] / 2;
+                $arabic = new Arabic();
+                $name = $arabic->utf8Glyphs(Auth::guard('cooker')->user()->username);
+                $image->text($name, $width, $height, function($font) { 
+                    $font->file(public_path("fonts/Cairo-VariableFont_slnt,wght.ttf"));
+                    $font->size(30);  
+                    $font->color('red');  
+                    $font->align('center');
+                    $font->valign('middle');
+                    $font->stroke('ff5500',2); 
+                    // $font->lineHeight(1.6); 
+                    // $font->angle(45);  
+              }); 

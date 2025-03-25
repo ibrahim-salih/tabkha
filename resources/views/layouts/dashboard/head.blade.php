@@ -24,7 +24,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/dashboard-ecommerce.css">
-  
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/bootstrap-switch.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/switchery.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/selects/select2.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/icheck/icheck.css">

@@ -18,10 +18,15 @@ return new class extends Migration
             $table->bigInteger('food_id')->unsigned()->comment('الطبخة');
             $table->bigInteger('cooker_id')->unsigned()->comment('الطباخ');
             $table->bigInteger('Qtype_id')->unsigned()->comment('نوع الكمية');
+            $table->bigInteger('country_id')->unsigned()->comment('المحافظة');
+            $table->bigInteger('state_id')->unsigned()->comment('المدينة');
             $table->string('image')->nullable()->comment('صورة');
             $table->text('description')->nullable()->comment('وصف الطبخة');
             $table->string('video')->nullable()->comment('فيديو الطبخة');
             $table->float('price',8,2)->default(0)->comment('السعر');
+            $table->integer('minQty',10)->nullable()->comment('اقل كمية للطلب');
+            $table->integer('bforeOrder',10)->nullable()->comment('يطلب قبل التنفيذ بـ');
+            $table->integer('timeEnd',10)->nullable()->comment('وقت التنفيذ');
             $table->enum('status',[0,1])->default(0)->comment('حالة التفعيل');
             $table->bigInteger('view')->default(0)->comment('مشاهدات الطبخة');
             $table->text('meta_description')->nullable()->comment('كلمات مفتاحية');
@@ -34,6 +39,8 @@ return new class extends Migration
             $table->foreign('food_id')->references('id')->on('foodlists');
             $table->foreign('cooker_id')->references('id')->on('cookers');
             $table->foreign('Qtype_id')->references('id')->on('quantity_types');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 

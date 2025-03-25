@@ -77,6 +77,7 @@
                                             <thead class="bg-success white">
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>الصورة</th>
                                                     <th>القسم</th>
                                                     <th>الفئة</th>
                                                     <th>الطبخة</th>
@@ -92,6 +93,22 @@
                                                 <tr class="border-bottom-teal border-bottom-darken-2 border-custom-color">
                                                     <?php $i++; ?>
                                                     <td>{{ $loop->iteration }}</td>
+                                                    <td>
+                                                    @if(!empty($menu->image))
+                                                            
+                                                            @if(File::exists(public_path($menu->image)))
+                                                            <img 
+                                                            src="{{ asset($menu->image) }}" data-action="zoom" class="rounded img-fluid float-left mr-2 mb-1"
+                                                            width="400" height="300">
+                                                            @else
+                                                            <img style="width: 100px;height: 100px;"
+                                                            src="{{ asset('uploads/menus/small/no-image.png') }}">
+                                                            @endif
+                                                   @else
+                                                       <img style="width: 100px;height: 100px;"
+                                                            src="{{ asset('uploads/menus/small/no-image.png') }}">
+                                                   @endif
+                                                    </td>
                                                     <td>{{ ($menu->section->name) }}</td>
                                                     <td>{{ ($menu->category->name) }}</td>
                                                     <td>{{ ($menu->food->name) }}</td>
@@ -118,6 +135,7 @@
                                             <tfoot class="bg-success white">
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>الصورة</th>
                                                     <th>القسم</th>
                                                     <th>الفئة</th>
                                                     <th>الطبخة</th>

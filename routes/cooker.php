@@ -21,7 +21,8 @@ Route::group(
         ########################### Auth #####################################################
         // Route::view('register', 'livewire.show-form');
         Route::get('/getStates', [AuthController::class , 'getStates'])->name('getStates');
-        Route::get('terms', [AuthController::class , 'terms'])->name('terms')->middleware('guest:cooker');
+        Route::get('confirm/{code}', [AuthController::class , 'confirm'])->name('confirm')->middleware('guest:cooker');
+        // Route::get('/vendor/confirm/{code}', 'VendorController@confirmVendor');
         Route::get('register', [AuthController::class , 'showRegisterForm'])->name('register')->middleware('guest:cooker');
         Route::post('register', [AuthController::class , 'register'])->name('register.post')->middleware('guest:cooker');
         Route::get('/cooker/confirm/{code}', [AuthController::class, 'confirmCooker']);
@@ -35,11 +36,22 @@ Route::group(
             ########################### cookers ##############################################
             // Check Cooker Password
             Route::get('check-password', [ProfileController::class, 'checkPassword']);
-            Route::get('/cooker-password', [ProfileController::class, 'password'])->name('cooker-password');
-            Route::get('/cooker-details', [ProfileController::class, 'profile'])->name('cooker-details');
+            Route::get('/password', [ProfileController::class, 'password'])->name('password');
+            Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
             Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
             Route::post('/update-password', [ProfileController::class, 'updatePassword']);
-            ########################### menu ##############################################
+
+            Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
+            Route::post('/update-settings', [ProfileController::class, 'updateSettings']);
+            Route::get('/package', [ProfileController::class, 'package'])->name('package');
+            Route::post('/update-package/{package}', [ProfileController::class, 'updatePackage'])->name('updatePackageDetails');
+            Route::get('/charge', [ProfileController::class, 'charge'])->name('charge');
+            Route::post('/store-charge', [ProfileController::class, 'storeCharge']);
+
+            Route::post('/work', [ProfileController::class, 'workStatus'])->name('workStatus');
+            Route::post('/prePay', [ProfileController::class, 'prePay'])->name('prePay');
+            Route::post('/codPay', [ProfileController::class, 'codPay'])->name('codPay');
+            ########################### menu #################################################
             Route::group(['prefix' => 'menus', 'as' => 'menus.'], function () {
                 Route::controller(MenuController::class)->group(function () {
                     Route::get('/', 'index')->name('index');
@@ -57,8 +69,7 @@ Route::group(
                     // Route::get('/restore-all', 'restoreAll'])->name('restore');
                 });
             });
-            ########################### orders ##############################################
-            
+            ########################### orders ###############################################
         });
         ########################### End Protected Routes #####################################
     }

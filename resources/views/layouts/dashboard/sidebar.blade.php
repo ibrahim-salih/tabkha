@@ -46,9 +46,11 @@
         </li>
         <li class=" nav-item"><a href="#"><i class="la la-android"></i><span class="menu-title" data-i18n="nav.page_layouts.main">الطباخين</span><span class="badge badge badge-pill badge-danger float-right mr-2">جديد</span></a>
           <ul class="menu-content">
-            <li><a class="menu-item" href="layout-1-column.html" data-i18n="nav.page_layouts.1_column">النشطين</a>
+            <li @if(Session::get('page')=='cookers-activated') class="active" @endif><a class="menu-item" href="{{ route('dashboard.cookers.activated') }}" data-i18n="nav.page_layouts.1_column">النشطين</a>
             </li>
-            <li><a class="menu-item" href="layout-2-columns.html" data-i18n="nav.page_layouts.2_columns">الموقوفين</a>
+            <li @if(Session::get('page')=='cookers-not-activated') class="active" @endif><a class="menu-item" href="{{ route('dashboard.cookers.not-activated') }}" data-i18n="nav.page_layouts.2_columns">الموقوفين</a>
+            </li>
+            <li @if(Session::get('page')=='cookers') class="active" @endif><a class="menu-item" href="{{ route('dashboard.cookers.index') }}" data-i18n="nav.page_layouts.1_column">الجميع</a>
             </li>
           </ul>
         </li>

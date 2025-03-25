@@ -14,6 +14,7 @@
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/vendors.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/extensions/zoom.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/extensions/toastr.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/extensions/toastr.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/app.css">
@@ -23,9 +24,14 @@
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/forms/wizard.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/pages/dashboard-ecommerce.css">
-
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/bootstrap-switch.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/selects/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/icheck/icheck.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/icheck/custom.css">
+  
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/forms/toggle/switchery.min.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/forms/checkboxes-radios.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/css-rtl/plugins/forms/switch.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/fonts/simple-line-icons/style.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/weather-icons/climacons.min.css">
@@ -33,6 +39,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/morris.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/chartist.css">
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/vendors/css/charts/chartist-plugin-tooltip.css">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
   <!-- END VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('dashboard')}}/app-assets/fonts/simple-line-icons/style.css">
   <!-- BEGIN Custom CSS-->
